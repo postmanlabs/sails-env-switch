@@ -1,1 +1,1 @@
-# sails env switch
+# sails-env-switch
