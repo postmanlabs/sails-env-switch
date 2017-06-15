@@ -2,7 +2,7 @@
  * @fileOverview This is a variation of a SailsJS local.js file that uses env-lift to provide configuration overrides
  * from environment variables.
  */
-module.exports = require('../../index').switch({
+module.exports = require('../../index').switch('development', {
 
   // Your SSL certificate and key, if you want to be able to serve HTTP responses
   // over https:// and/or use websockets over the wss:// protocol

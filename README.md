@@ -47,7 +47,7 @@ __Updated code using sail-env-switch:__
 
 ```javascript
 // production.js
-modules.exports = require('sails-env-switch').switch({
+modules.exports = require('sails-env-switch').switch('production',{
   port: 80,
   environment: 'production',
   routes: {
@@ -57,19 +57,19 @@ modules.exports = require('sails-env-switch').switch({
 });
 ```
 
-At this stage you have `SAILS_ENV` variable set to `internal`.
+At this stage you have `SAILS_ENV` variable is set to `internal`.
 
 __Code for Internal.js__
 
 ```javascript
-modules.exports = {
+modules.exports = require('sails-env-switch').switch('internal',{
   port: 8080,
     environment: 'production',
     routes: {
       'GET /x/foo': 'dummyController.getFoo'
       'POST /x/bar': 'dummyController.postBar'
     }
-};
+});
 ```
 
 Now if you open the sails console and try to get the sails config and other variables.
