@@ -29,18 +29,16 @@ both these scenarios. This module will help you doing this as you need to define
 the environment and that instance will pick only the config defined in internal.js file of `config/env` of the sails
 project.
 
-If you are using `env-lift` also in the sails project, this module should be used with `env-lift`
-
 ```javascript
 // production.js
-modules.exports = require('env-lift').load('sails-project-name', require('sails-env-switch').switch('production',{
+modules.exports = require('sails-env-switch').switch('production',{
   port: 80,
   environment: 'production',
   routes: {
     'GET /foo': 'dummyController.get'
     'POST /bar': 'dummyController.post'
   }
-}));
+});
 ```
 
 At this stage you have `SAILS_ENV` variable is set to `internal`.
@@ -48,14 +46,14 @@ At this stage you have `SAILS_ENV` variable is set to `internal`.
 __Code for Internal.js__
 
 ```javascript
-modules.exports = require('env-lift').load('sails-project-name', require('sails-env-switch').switch('internal',{
+modules.exports = require('sails-env-switch').switch('internal',{
   port: 8080,
     environment: 'production',
     routes: {
       'GET /internal/foo': 'dummyController.getFoo'
       'POST /internal/bar': 'dummyController.postBar'
     }
-}));
+});
 ```
 
 Now if you open the sails console and try to get the sails config and other variables.
@@ -76,6 +74,41 @@ routes: {
 and not the one in the production.js. Even though the NODE_ENV will be same as production.js but the config will be
 taken from internal.js. This will help us keep the environments clean and keep thing separately for internal and
 external behaviour of the service.
+
+#### Use of env-lift with this module
+
+If you are using `env-lift` for your current project, you can easily use this module with `env-lift`. Check the 
+following example.
+
+```javascript
+// production.js
+modules.exports = require('env-lift').load('sample-project-name', require('sails-env-switch').switch('production',{
+  port: 80,
+  environment: 'production',
+  routes: {
+    'GET /foo': 'dummyController.get'
+    'POST /bar': 'dummyController.post'
+  }
+}));
+```
+
+At this stage you have `SAILS_ENV` variable is set to `internal`.
+
+__Code for Internal.js__
+
+```javascript
+modules.exports = require('env-lift').load('sample-project-name', require('sails-env-switch').switch('internal',{
+  port: 8080,
+    environment: 'production',
+    routes: {
+      'GET /internal/foo': 'dummyController.getFoo'
+      'POST /internal/bar': 'dummyController.postBar'
+    }
+}));
+```
+
+The output will be same as described above.
+
 
 ## Some important thing
 
