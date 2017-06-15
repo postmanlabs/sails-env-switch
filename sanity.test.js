@@ -25,4 +25,3 @@ describe('with-sails-env', function () {
         expect(require('./config/env/development').models).to.equal(undefined);
     });
 });
-
