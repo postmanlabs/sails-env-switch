@@ -36,17 +36,28 @@ module.exports = {
    *
    */
   switch: function (defaultConfig) {
+    // If SAILS_ENV is not defined, return the default config
     if (!process.env.SAILS_ENV) { 
         return defaultConfig; 
     }
 
+    // Get the file name from which config will be loaded.
     var targetFile = require.resolve(path.join(process.cwd(), 'config', 'env', process.env.SAILS_ENV));
 
+    // if the parent file name from which this module is called is same as the targetFile name then no need
+    // to require the targetFile as we are already at the target File and we need that file's config.
+    //
+    // So lets say SAILS_ENV is set to internal and we get the targetFile as /internal.js
+    // If the current file from which this file is called is internal.js, then return the config of that file.
     if (path.relative(targetFile, module.parent.filename) === '') {
       return defaultConfig;
     }
-    
+
+    // Cache for this file has to be cleared as this hook depends on the parent module from which this has been
+    // called and that is dynamic, so we need to make sure we are requiring the correct parent file everytime.
     delete require.cache[__filename];
+
+    // Finally return the target file's config.
     return require(targetFile);
   }
 };

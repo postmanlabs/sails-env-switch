@@ -4,7 +4,7 @@
   "description": "loads environment config based on SAILS_ENV value",
   "main": "index.js",
   "scripts": {
-    "test": "mocha unit-test.spec.js"
+    "test": "scripts/test.sh"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,8 @@
   "homepage": "https://github.com/postmanlabs/sails-env-switch#readme",
   "devDependencies": {
     "chai": "4.0.2",
+    "jscs": "3.0.7",
+    "jshint": "2.9.4",
     "mocha": "3.4.2"
   }
 }
