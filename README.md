@@ -72,7 +72,7 @@ modules.exports = require('sails-env-switch').switch('internal',{
 });
 ```
 
-If you are using `env-lift` also in the sails project, this module can be used with that module too
+If you are using `env-lift` also in the sails project, this module should be used with `env-lift`
 
 __Original Code:__
 
@@ -141,7 +141,7 @@ external behaviour of the service.
 - If `SAILS_ENV` is not defined, then the config will be picked by the sails as usual.
 - If `SAILS_ENV` is defined to some name, then the same named file should be present in `config/env` folder of sails,
  otherwise it will break
-- This module is not the alternative for `env-lift`, this module can be used with `env-lift` to switch the env config
+- This module is not the alternative for `env-lift`, this module should be used with `env-lift` to switch the env config
  based on `SAILS_ENV` value.
 
 
