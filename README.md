@@ -29,66 +29,7 @@ both these scenarios. This module will help you doing this as you need to define
 the environment and that instance will pick only the config defined in internal.js file of `config/env` of the sails
 project.
 
-__Original Code:__
-
-```javascript
-// production.js
-modules.exports = {
-  port: 80,
-  environment: 'production',
-  routes: {
-    'GET /foo': 'dummyController.get'
-    'POST /bar': 'dummyController.post'
-  }
-};
-```
-
-__Updated code using sail-env-switch:__
-
-```javascript
-// production.js
-modules.exports = require('sails-env-switch').switch('production',{
-  port: 80,
-  environment: 'production',
-  routes: {
-    'GET /foo': 'dummyController.get'
-    'POST /bar': 'dummyController.post'
-  }
-});
-```
-
-At this stage you have `SAILS_ENV` variable is set to `internal`.
-
-__Code for Internal.js__
-
-```javascript
-modules.exports = require('sails-env-switch').switch('internal',{
-  port: 8080,
-    environment: 'production',
-    routes: {
-      'GET /x/foo': 'dummyController.getFoo'
-      'POST /x/bar': 'dummyController.postBar'
-    }
-});
-```
-
 If you are using `env-lift` also in the sails project, this module should be used with `env-lift`
-
-__Original Code:__
-
-```javascript
-// production.js
-modules.exports = require('env-lift').load('sails-project-name', {
-  port: 80,
-  environment: 'production',
-  routes: {
-    'GET /foo': 'dummyController.get'
-    'POST /bar': 'dummyController.post'
-  }
-});
-```
-
-__Updated code using sail-env-switch:__
 
 ```javascript
 // production.js
@@ -111,8 +52,8 @@ modules.exports = require('env-lift').load('sails-project-name', require('sails-
   port: 8080,
     environment: 'production',
     routes: {
-      'GET /x/foo': 'dummyController.getFoo'
-      'POST /x/bar': 'dummyController.postBar'
+      'GET /internal/foo': 'dummyController.getFoo'
+      'POST /internal/bar': 'dummyController.postBar'
     }
 }));
 ```
@@ -127,8 +68,8 @@ This will give you the values of routes same as in the internal.js
 
 ```
 routes: {
-  'GET /x/foo': 'dummyController.getFoo'
-  'POST /x/bar': 'dummyController.postBar'
+  'GET /internal/foo': 'dummyController.getFoo'
+  'POST /internal/bar': 'dummyController.postBar'
 }
 ```
 

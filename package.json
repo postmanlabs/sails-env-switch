@@ -4,7 +4,7 @@
   "description": "loads environment config based on SAILS_ENV value",
   "main": "index.js",
   "scripts": {
-    "test": "mocha unit-test.spec.js"
+    "test": "mocha *.test.js;"
   },
   "repository": {
     "type": "git",
