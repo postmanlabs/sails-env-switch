@@ -72,8 +72,7 @@ routes: {
 ```
 
 and not the one in the production.js. Even though the NODE_ENV will be same as production.js but the config will be
-taken from internal.js. This will help us keep the environments clean and keep thing separately for internal and
-external behaviour of the service.
+taken from internal.js. This helps segregate the configuration for internal and external facets of the service..
 
 #### Use of env-lift with this module
 
