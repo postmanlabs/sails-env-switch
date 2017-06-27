@@ -31,7 +31,7 @@ project.
 
 ```javascript
 // production.js
-modules.exports = require('sails-env-switch').switch('production',{
+modules.exports = require('sails-env-switch').switch({
   port: 80,
   environment: 'production',
   routes: {
@@ -46,7 +46,7 @@ At this stage you have `SAILS_ENV` variable is set to `internal`.
 __Code for Internal.js__
 
 ```javascript
-modules.exports = require('sails-env-switch').switch('internal',{
+modules.exports = require('sails-env-switch').switch({
   port: 8080,
     environment: 'production',
     routes: {
@@ -81,7 +81,7 @@ following example.
 
 ```javascript
 // production.js
-modules.exports = require('env-lift').load('sample-project-name', require('sails-env-switch').switch('production',{
+modules.exports = require('env-lift').load('sample-project-name', require('sails-env-switch').switch({
   port: 80,
   environment: 'production',
   routes: {
@@ -96,7 +96,7 @@ At this stage you have `SAILS_ENV` variable is set to `internal`.
 __Code for Internal.js__
 
 ```javascript
-modules.exports = require('env-lift').load('sample-project-name', require('sails-env-switch').switch('internal',{
+modules.exports = require('env-lift').load('sample-project-name', require('sails-env-switch').switch({
   port: 8080,
     environment: 'production',
     routes: {
