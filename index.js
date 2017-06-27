@@ -13,7 +13,7 @@ module.exports = {
    *
    * @example
    * // This is the env config file
-   * module.exports = require('sails-env-switch').switch('development', {
+   * module.exports = require('sails-env-switch').switch({
    *    port: 8080,
    *    name: 'Sample'
    * });
@@ -37,8 +37,8 @@ module.exports = {
    */
   switch: function (defaultConfig) {
     // If SAILS_ENV is not defined, return the default config
-    if (!process.env.SAILS_ENV) { 
-        return defaultConfig; 
+    if (!process.env.SAILS_ENV) {
+        return defaultConfig;
     }
 
     // Get the file name from which config will be loaded.
