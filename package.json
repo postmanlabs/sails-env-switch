@@ -25,6 +25,6 @@
   "homepage": "https://github.com/postmanlabs/sails-env-switch#readme",
   "devDependencies": {
     "chai": "4.0.2",
-    "mocha": "3.4.2"
+    "mocha": "7.1.1"
   }
 }
