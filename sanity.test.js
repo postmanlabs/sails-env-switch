@@ -1,5 +1,4 @@
-const
-    chai = require('chai'),
+var chai = require('chai'),
     expect = chai.expect;
 
 describe('with-sails-env', function () {
