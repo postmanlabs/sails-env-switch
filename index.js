@@ -1,4 +1,4 @@
-var path = require('path');
+const path = require('path');
 
 module.exports = {
   /**
@@ -42,7 +42,7 @@ module.exports = {
     }
 
     // Get the file name from which config will be loaded.
-    var targetFile = require.resolve(path.join(process.cwd(), 'config', 'env', process.env.SAILS_ENV));
+    const targetFile = require.resolve(path.join(process.cwd(), 'config', 'env', process.env.SAILS_ENV));
 
     // if the parent file name from which this module is called is same as the targetFile name then no need
     // to require the targetFile as we are already at the target File and we need that file's config.

@@ -1,4 +1,4 @@
-var chai = require('chai'),
+const chai = require('chai'),
     expect = chai.expect;
 
 process.env.SAILS_ENV = 'internal';
