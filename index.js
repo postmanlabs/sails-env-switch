@@ -1,4 +1,5 @@
-const path = require('path');
+var path = require('path');
+const { getParentFilePath } = require('./utils')
 
 module.exports = {
   /**
@@ -42,7 +43,7 @@ module.exports = {
     }
 
     // Get the file name from which config will be loaded.
-    const targetFile = require.resolve(path.join(process.cwd(), 'config', 'env', process.env.SAILS_ENV));
+    var targetFile = require.resolve(path.join(process.cwd(), 'config', 'env', process.env.SAILS_ENV));
 
     // if the parent file name from which this module is called is same as the targetFile name then no need
     // to require the targetFile as we are already at the target File and we need that file's config.
@@ -63,25 +64,17 @@ module.exports = {
 
   /**
    * `delete require.cache()` might not work properly if there is any hook applied to require module, eg: require-in-the-middle
-   * switchV2() will expect parentFilename as an parameter and use that to compare with the targetFile.
+   * switchV2() will be using stack trace object to get parentFilename and use that to compare with the targetFile.
    *
    * It will pick the env config based on the SAILS_ENV value. If a project has SAILS_ENV
    * defined to some value then it expects that same file in the env/config file so that it
    * will pick the config value from that file.
    *
-   * @param env this is the current sails environment in which this module is used.
-   * @param parentFilename this is the filename of the module which is calling switchV2.
    * @param defaultConfig this is the default config which is bases on NODE_ENV value
    * @returns {config}
    *
-   * @example
-   * // This is the env config file
-   * module.exports = require('sails-env-switch').switchV2(__filename, {
-   *    port: 8080,
-   *    name: 'Sample'
-   * });
    */
-  switchV2: function (parentFilename, defaultConfig) {
+  switchV2: function (defaultConfig) {
     // If SAILS_ENV is not defined, return the default config
     if (!process.env.SAILS_ENV) {
         return defaultConfig;
@@ -92,7 +85,7 @@ module.exports = {
 
     // if the parent file name is same as the targetFile name then no need
     // to require the targetFile as we are already at the target File and we need that file's config.
-    if (path.relative(targetFile, parentFilename) === '') {
+    if (path.relative(targetFile, getParentFilePath()) === '') {
       return defaultConfig;
     }
 
