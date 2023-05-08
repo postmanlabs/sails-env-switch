@@ -57,7 +57,6 @@ module.exports = {
 
     // if getting parent file name from module failed then use error-stack to fetch the parent file path
     if(path.relative(targetFile, getParentFilePath()) === '') {
-        console.log("Test is here");
         return defaultConfig;
     }
 
