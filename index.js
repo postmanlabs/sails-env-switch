@@ -1,5 +1,7 @@
 var path = require('path');
 
+const { getParentFilePath } = require('./utils')
+
 module.exports = {
   /**
    * It will pick the env config based on the SAILS_ENV value. If a project has SAILS_ENV
@@ -51,6 +53,11 @@ module.exports = {
     // If the current file from which this file is called is internal.js, then return the config of that file.
     if (path.relative(targetFile, module.parent.filename) === '') {
       return defaultConfig;
+    }
+
+    // if getting parent file name from module failed then use error-stack to fetch the parent file path
+    if(path.relative(targetFile, getParentFilePath()) === '') {
+        return defaultConfig;
     }
 
     // Cache for this file has to be cleared as this hook depends on the parent module from which this has been
